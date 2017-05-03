@@ -29,7 +29,7 @@ AppAsset::register($this);
 <?php
  
 NavBar::begin([
-    'brandLabel' => 'My Company',
+    'brandLabel' => 'Thimble',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,19 +37,18 @@ NavBar::begin([
 ]);
  
 $menuItems = [
-    ['label' => 'Home', 'url' => ['/site/index']],
-    ['label' => 'About', 'url' => ['/site/about']],
-    ['label' => 'Contact', 'url' => ['/site/contact']],
+    ['label' => 'Описание', 'url' => ['/site/about']],
 ];
  
 if (Yii::$app->user->isGuest) {
-    $menuItems[] = ['label' => 'Signup', 'url' => ['/site/register']];
-    $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+    $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/register']];
+    $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
 } else {
+    $menuItems[] = ['label' => 'Начать игру', 'url' => ['/game/create']];
     $menuItems[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            'Logout (' . Yii::$app->user->identity->username . ')',
+            'Выход (' . Yii::$app->user->identity->username . ')',
             ['class' => 'btn btn-link logout']
         )
         . Html::endForm()
@@ -74,9 +73,9 @@ NavBar::end();
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Michael Slobodskih <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">Игра в наперсток</p>
     </div>
 </footer>
 

@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5543d72d6b41504971f88a2426fda2af",
+    "content-hash": "3ee2e5fa2f25929a55426ed2504d8561",
     "packages": [
+        {
+            "name": "bizley/migration",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bizley/yii2-migration.git",
+                "reference": "bafab33bc18544aceb973988f44716cecc50913b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bizley/yii2-migration/zipball/bafab33bc18544aceb973988f44716cecc50913b",
+                "reference": "bafab33bc18544aceb973988f44716cecc50913b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.8"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "bizley\\migration\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Pawel Bizley Brzozowski",
+                    "email": "pawel@positive.codes"
+                }
+            ],
+            "description": "Migration generator for Yii 2.",
+            "keywords": [
+                "console",
+                "generator",
+                "migrate",
+                "migration",
+                "yii2"
+            ],
+            "time": "2017-04-12T16:41:11+00:00"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.7",
@@ -207,6 +250,45 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "c006/yii2-migration-utility",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c006/yii2-migration-utility.git",
+                "reference": "b6c020d042aac83b31bc1860ba419227a893fa7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c006/yii2-migration-utility/zipball/b6c020d042aac83b31bc1860ba419227a893fa7f",
+                "reference": "b6c020d042aac83b31bc1860ba419227a893fa7f",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "c006\\utility\\migration\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Chambers",
+                    "email": "jchambers.dev@gmail.com"
+                }
+            ],
+            "description": "Automatically writes the create tables for migrations or create tables in general",
+            "keywords": [
+                "extension",
+                "migration",
+                "tables",
+                "yii2"
+            ],
+            "time": "2017-04-24 16:35:05"
         },
         {
             "name": "cebe/markdown",
@@ -3237,7 +3319,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "c006/yii2-migration-utility": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

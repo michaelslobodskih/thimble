@@ -1,20 +1,21 @@
 <?php
- 
+
 namespace app\models;
- 
+
 use Yii;
 use yii\base\Model;
- 
+use app\models\Billing;
+
 /**
  * Signup form
  */
 class RegisterForm extends Model
 {
- 
+
     public $username;
     public $email;
     public $password;
- 
+
     /**
      * @inheritdoc
      */
@@ -34,7 +35,7 @@ class RegisterForm extends Model
             ['password', 'string', 'min' => 6],
         ];
     }
- 
+
     /**
      * Signs user up.
      *
@@ -42,17 +43,29 @@ class RegisterForm extends Model
      */
     public function signup()
     {
- 
+
         if (!$this->validate()) {
             return null;
         }
- 
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        $user->ballance = Yii::$app->params['BalanceAfterRegistration'];
+
+        if ($user->save()) {
+            $billing = new Billing;
+            $billing->user_id = $user->id;
+            $billing->event_type = "registration";
+            $billing->event_date = time();
+            $billing->amount = 100;
+            $billing->save();
+
+            return $user;
+        } else {
+            return null;
+        }
     }
- 
 }

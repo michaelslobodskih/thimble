@@ -4,15 +4,15 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = 'Описание игры';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        This is the About page. You may modify the following file to customize its content:
+        Перед началом игры вы делаете ставку. Далее перед вами появляется 3 наперстка и вам необходимо угадать где находится шарик. 
+		Если Вы выигрываете то получаете сумму которую вы поставили. В противном случае поставленная сумма уходит владельцу сервиса.
     </p>
 
-    <code><?= __FILE__ ?></code>
 </div>

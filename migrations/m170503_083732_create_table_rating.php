@@ -12,8 +12,9 @@ class m170503_083732_create_table_rating extends Migration
         }
 
         $this->createTable('{{%rating}}', [
-            'id' => $this->integer(11)->notNull(),
+            'id' => $this->integer(11)->notNull()->append('AUTO_INCREMENT PRIMARY KEY'),
             'user_id' => $this->integer(11)->notNull(),
+            'game_count' => $this->integer(11)->notNull(),
             'win_count' => $this->integer(11)->notNull(),
             'win_amount' => $this->integer(11)->notNull(),
         ], $tableOptions);

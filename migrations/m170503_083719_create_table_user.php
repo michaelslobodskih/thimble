@@ -20,6 +20,7 @@ class m170503_083719_create_table_user extends Migration
             'email' => $this->string(255)->notNull(),
             'status' => $this->smallInteger(6)->notNull()->defaultValue('10'),
             'created_at' => $this->integer(11)->notNull(),
+            'ballance' => $this->integer(11)->notNull(),
             'updated_at' => $this->integer(11)->notNull(),
         ], $tableOptions);
 

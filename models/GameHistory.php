@@ -16,7 +16,6 @@ use Yii;
  * @property string $status
  * @property integer $bid
  *
- * @property Billing $id0
  * @property User $user
  */
 class GameHistory extends \yii\db\ActiveRecord
@@ -37,8 +36,8 @@ class GameHistory extends \yii\db\ActiveRecord
         return [
             [['user_id', 'bid'], 'required'],
             [['user_id', 'game_started', 'game_ended', 'ball_position', 'chosen_position', 'bid'], 'integer'],
-            [['status'], 'string'],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Billing::className(), 'targetAttribute' => ['id' => 'game_id']],
+            ['bid', 'compare', 'compareValue' => 0, 'operator' => '>'],
+            [['status'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -63,16 +62,15 @@ class GameHistory extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
-    {
-        return $this->hasOne(Billing::className(), ['game_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getStatus()
+    {
+        if ($this->status == 'win') return 'выиграли';
+        if ($this->status == 'lose') return 'проиграли';
+        return 'игра не закончена';
     }
 }

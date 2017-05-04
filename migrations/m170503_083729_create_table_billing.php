@@ -12,9 +12,10 @@ class m170503_083729_create_table_billing extends Migration
         }
 
         $this->createTable('{{%billing}}', [
-            'id' => $this->integer(11)->notNull(),
+            'id' => $this->integer(11)->notNull()->append('AUTO_INCREMENT PRIMARY KEY'),
             'user_id' => $this->integer(11)->notNull()->comment('ID пользователя'),
             'event_type' => $this->string()->notNull()->comment('Тип события'),
+            'event_date' => $this->integer(11)->notNull()->comment('Дата события'),
             'amount' => $this->integer(11)->notNull()->comment('Сумма'),
             'game_id' => $this->integer(11)->comment('Ссылка на игру'),
         ], $tableOptions);

@@ -7,14 +7,13 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
-    
-    'modules'=> [
-    
-	'utility'=>[
-	    'class' => 'c006\utility\migration\Module',
-	]
+
+    'modules' => [
+        'utility' => [
+            'class' => 'c006\utility\migration\Module',
+        ]
     ],
-    
+
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -23,13 +22,13 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        
-        
+
+
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-        
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -50,17 +49,19 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                '<controller:\w+>/<action:\w+>/<id:\w+>' => '<controller>/<action>',
             ],
         ],
-        
+
     ],
-    
-    
+
+
     'params' => $params,
 ];
 
@@ -78,7 +79,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
-        'allowedIPs' =>['*.*.*.*'],
+        'allowedIPs' => ['*.*.*.*'],
 
     ];
 }

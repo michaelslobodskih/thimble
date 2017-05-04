@@ -7,6 +7,7 @@ use app\models\Billing;
 use app\models\Rating;
 use app\models\User;
 use yii\filters\AccessControl;
+use yii\data\Pagination;
 use yii;
 
 class GameController extends \yii\web\Controller
@@ -119,25 +120,34 @@ class GameController extends \yii\web\Controller
             $sort = 'win_amount DESC';
         }
 
+        //постраничный вывод
+        $pagination = new Pagination(['pageSize' => 20 ,'totalCount' => Rating::find()->count()]);
+
         //Получаем данные о рейтинге из таблицы ratings
-        $model = Rating::find()->with('user')->orderBy($sort)->all();
+        $model  = Rating::find()->with('user')->orderBy($sort)->offset($pagination->offset)->limit($pagination->limit)->all();
 
-
-        return $this->render('rating', ['model' => $model]);
+        return $this->render('rating', ['model' => $model,'pagination'=>$pagination]);
     }
 
     public function actionHistory()
     {
+        //постраничный вывод
+        $pagination = new Pagination(['pageSize' => 20 ,'totalCount' => GameHistory::find()->where(['user_id' => Yii::$app->user->id])->andWhere(['not', ['game_ended' => null]])->count()]);
+
         //Получаем все данные о играх текущего пользователя
-        $model = GameHistory::find()->where(['user_id' => Yii::$app->user->id])->andWhere(['not', ['game_ended' => null]])->all();
-        return $this->render('history', ['model' => $model]);
+        $model = GameHistory::find()->where(['user_id' => Yii::$app->user->id])->andWhere(['not', ['game_ended' => null]])->offset($pagination->offset)->limit($pagination->limit)->all();
+        return $this->render('history', ['model' => $model,'pagination'=>$pagination]);
     }
 
     public function actionBilling()
     {
+        //постраничный вывод
+        $pagination = new Pagination(['pageSize' => 20 ,'totalCount' => Billing::find()->where(['user_id' => Yii::$app->user->id])->count()]);
+
+
         //Получаем данные из таблицы billing
-        $model = Billing::find()->with('user', 'game')->where(['user_id' => Yii::$app->user->id])->all();
-        return $this->render('billing', ['model' => $model]);
+        $model = Billing::find()->with('user', 'game')->where(['user_id' => Yii::$app->user->id])->offset($pagination->offset)->limit($pagination->limit)->all();
+        return $this->render('billing', ['model' => $model,'pagination'=>$pagination]);
     }
 
 

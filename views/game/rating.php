@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
+
 $this->title = 'Рейтинг пользователей';
 $this->params['breadcrumbs'][] = $this->title;
 $i = 1;
@@ -33,6 +35,14 @@ $i = 1;
     <? endforeach; ?>
     </tbody>
 </table>
+
+<div class="text-center">
+    <?
+    echo LinkPager::widget([
+        'pagination' => $pagination,
+    ]);
+    ?>
+</div>
 <div class="alert alert-success">
     Рейтинг не учитывает аванс при регистрации
 </div>

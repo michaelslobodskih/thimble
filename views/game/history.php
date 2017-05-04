@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\Billing;
+use yii\widgets\LinkPager;
 
 $this->title = 'История игр';
 $this->params['breadcrumbs'][] = $this->title;
@@ -43,7 +44,13 @@ $total = 0;
     <? endforeach; ?>
     </tbody>
 </table>
-
+<div class="text-center">
+    <?
+    echo LinkPager::widget([
+        'pagination' => $pagination,
+    ]);
+    ?>
+</div>
 <div class="alert alert-success">
     Итого Ваш выигрыш (c учетом аванса при регистрации) : <strong><?= Billing::winsamount() ?></strong>
 </div>
